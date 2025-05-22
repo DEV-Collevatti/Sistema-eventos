@@ -103,7 +103,7 @@ public class SistemaEventos {
 
     private void listarEventos() {
         System.out.println("\n=== Eventos cadastrados ===");
-        eventos.sort(Comparator.comparing(Evento::getHorario));
+        eventos.sort(Comparator.comparing(Evento::horario));
         for (int i = 0; i < eventos.size(); i++) {
             System.out.println("[" + i + "] " + eventos.get(i));
         }
@@ -163,11 +163,11 @@ public class SistemaEventos {
 
         for (Evento evento : eventos) {
             if (evento.estaAcontecendoAgora()) {
-                System.out.println(evento.getNome() + ": ACONTECENDO AGORA");
+                System.out.println(evento.nome() + ": ACONTECENDO AGORA");
             } else if (evento.jaOcorreu()) {
-                System.out.println(evento.getNome() + ": JÁ OCORREU");
+                System.out.println(evento.nome() + ": JÁ OCORREU");
             } else {
-                System.out.println(evento.getNome() + ": FUTURO");
+                System.out.println(evento.nome() + ": FUTURO");
             }
         }
     }

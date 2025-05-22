@@ -12,11 +12,11 @@ public class ArquivoUtils {
     public static void salvarEventos(List<Evento> eventos) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARQUIVO))) {
             for (Evento e : eventos) {
-                String linha = e.getNome() + ";" +
-                        e.getEndereco() + ";" +
-                        e.getCategoria() + ";" +
-                        e.getHorario().format(formatter) + ";" +
-                        e.getDescricao();
+                String linha = e.nome() + ";" +
+                        e.endereco() + ";" +
+                        e.categoria() + ";" +
+                        e.horario().format(formatter) + ";" +
+                        e.descricao();
                 writer.write(linha);
                 writer.newLine();
             }
@@ -75,23 +75,7 @@ public class ArquivoUtils {
             while ((linha = reader.readLine()) != null) {
                 String[] partes = linha.split(";");
                 if (partes.length >= 4) {
-                    String nome = partes[0];
-                    String email = partes[1];
-                    String cidade = partes[2];
-                    String eventosTexto = partes[3];
-
-                    Usuario u = new Usuario(nome, email, cidade);
-
-                    // Associar eventos confirmados
-                    String[] eventosNomes = eventosTexto.split("\\|");
-                    for (String nomeEvento : eventosNomes) {
-                        for (Evento e : eventosDisponiveis) {
-                            if (e.getNome().equals(nomeEvento)) {
-                                u.adicionarEventoConfirmado(e);
-                            }
-                        }
-                    }
-
+                    Usuario u = criarUsuarioComEventos(partes, eventosDisponiveis);
                     usuarios.add(u);
                 }
             }
@@ -102,5 +86,26 @@ public class ArquivoUtils {
         }
 
         return usuarios;
+    }
+
+    private static Usuario criarUsuarioComEventos(String[] partes, List<Evento> eventosDisponiveis) {
+        String nome = partes[0];
+        String email = partes[1];
+        String cidade = partes[2];
+        String eventosTexto = partes[3];
+
+        Usuario u = new Usuario(nome, email, cidade);
+
+        // Associar eventos confirmados
+        String[] eventosNomes = eventosTexto.split("\\|");
+        for (String nomeEvento : eventosNomes) {
+            for (Evento e : eventosDisponiveis) {
+                if (e.nome().equals(nomeEvento)) {
+                    u.adicionarEventoConfirmado(e);
+                }
+            }
+        }
+
+        return u;
     }
 }

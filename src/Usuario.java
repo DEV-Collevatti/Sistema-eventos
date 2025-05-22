@@ -34,7 +34,7 @@ public class Usuario {
     public String getEventosConfirmadosComoTexto() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < eventosConfirmados.size(); i++) {
-            sb.append(eventosConfirmados.get(i).getNome());
+            sb.append(eventosConfirmados.get(i).nome()); // ✅ corrigido aqui
             if (i < eventosConfirmados.size() - 1) sb.append("|");
         }
         return sb.toString();
