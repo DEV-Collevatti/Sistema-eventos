@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
-    private String nome;
-    private String email;
-    private String cidade;
-    private List<Evento> eventosConfirmados;
+    private final String nome;
+    private final String email;
+    private final String cidade;
+    private final List<Evento> eventosConfirmados;
 
     public Usuario(String nome, String email, String cidade) {
         this.nome = nome;

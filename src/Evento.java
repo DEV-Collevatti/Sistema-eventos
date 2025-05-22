@@ -1,11 +1,11 @@
 import java.time.LocalDateTime;
 
 public class Evento {
-    private String nome;
-    private String endereco;
-    private String categoria;
-    private LocalDateTime horario;
-    private String descricao;
+    private final String nome;
+    private final String endereco;
+    private final String categoria;
+    private final LocalDateTime horario;
+    private final String descricao;
 
     public Evento(String nome, String endereco, String categoria, LocalDateTime horario, String descricao) {
         this.nome = nome;

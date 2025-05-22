@@ -5,7 +5,7 @@ import java.util.*;
 public class SistemaEventos {
     private List<Usuario> usuarios = new ArrayList<>();
     private List<Evento> eventos = new ArrayList<>();
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private Usuario usuarioLogado = null;
 
     public void iniciar() {
@@ -159,7 +159,6 @@ public class SistemaEventos {
     }
 
     private void mostrarStatusEventos() {
-        LocalDateTime agora = LocalDateTime.now();
         System.out.println("\nStatus dos eventos:");
 
         for (Evento evento : eventos) {
